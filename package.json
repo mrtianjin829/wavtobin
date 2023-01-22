@@ -1,0 +1,24 @@
+{
+  "name": "wavtobin",
+  "version": "1.0.0",
+  "description": "A simple cli tool made in Node.js for creating 32Khz u8 (unsigned 8-bit) dumps.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npm i"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mrtianjin829/wavtobin.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mrtianjin829/wavtobin/issues"
+  },
+  "homepage": "https://github.com/mrtianjin829/wavtobin#readme",
+  "dependencies": {
+    "wavefile": "^11.0.0"
+  }
+}
