@@ -1,4 +1,5 @@
 #!/usr/bin/node
+console.log("WaveBin (on branch main)")
 const { WaveFile } = require("wavefile");
 const fs = require("fs");
 const file = process.argv[2];
