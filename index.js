@@ -1,5 +1,6 @@
 #!/usr/bin/node
-console.log("WaveBin (on branch main)");
+console.log("WaveBin");
+try {
 const { WaveFile } = require("wavefile");
 const fs = require("fs");
 const file = process.argv[2];
@@ -19,3 +20,7 @@ if (wf.fmt.numChannels == 2) {
 }
 n = new Uint8Array(n);
 fs.writeFileSync("out.bin", Buffer.from(n));
+} catch(err){
+    console.log("[wtb] an error occurred:\n%s",err.message)
+    process.exit(1)
+}
