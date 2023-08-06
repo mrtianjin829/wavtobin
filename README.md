@@ -5,7 +5,7 @@ Supported Platforms:
 - Windows
 - Linux/Unix
 - Pretty much all platforms supported by Node.js
-Required programs:
+### Required programs:
 - Node.js
 - NPM
 In order to install, you need to download a specific tag from the repositoru
