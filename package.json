@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/mrtianjin829/wavtobin#readme",
   "dependencies": {
+    "argparse": "^2.0.1",
     "wavefile": "^11.0.0"
   }
 }
