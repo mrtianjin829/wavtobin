@@ -1,7 +1,7 @@
-const argparse = require("argparse")
+const argparse = require("argparse");
 
-function gen(args){
-    let cf = {}
+function gen(args) {
+  let cf = {};
 }
 
-module.exports = gen
+module.exports = gen;
