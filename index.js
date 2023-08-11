@@ -3,11 +3,11 @@ console.log("WaveBin");
 try {
   const { WaveFile } = require("wavefile");
   const fs = require("fs");
-  const file = process.argv[2];
-  const fd = fs.readFileSync(file);
   const wf = new WaveFile();
+  const cf = require("./argp")(process.argv)
+  const fd = fs.readFileSync(cf.file);
   wf.fromBuffer(fd);
-  wf.toSampleRate(32000);
+  wf.toSampleRate(cf.sampleRate);
   wf.toBitDepth("8");
   let smp = wf.getSamples();
   let n;
@@ -19,8 +19,9 @@ try {
     n = smp;
   }
   n = new Uint8Array(n);
-  fs.writeFileSync("out.bin", Buffer.from(n));
+  fs.writeFileSync(cf.output, Buffer.from(n));
 } catch (err) {
-  console.log("[wtb] an error occurred:\n%s", err.message);
+  console.log("[wtb] an error occurred:");
+  throw err
   process.exit(1);
 }
