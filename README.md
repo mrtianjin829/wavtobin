@@ -22,10 +22,10 @@ And you are all set.
 
 ## Documentation
 
-### Usage:
+### Synopsis:
 
 ```sh
-./index.js path/to/your/wavfile.wav
+./index.js [-o OUTPUT] [-r SAMPLERATE] FILE.WAV
 ```
 
 Once you execute this command properly, the program will create the file `out.bin` and continue silently.
