@@ -17,8 +17,8 @@ try {
    *this will convert the sample-type into PCM u8
    *changes the sample rate to the desired rate otherwise 32 Khz (good for html5bytebeat)
    * */
-  wf.toSampleRate(cf.sampleRate);
-  wf.toBitDepth("8");
+  if(wf.fmt.sampleRate != cf.sampleRate) wf.toSampleRate(cf.sampleRate);
+  if(wf.bitDepth !== "8") wf.toBitDepth("8");
   // Obtain "samples" from audio
   let smp = wf.getSamples();
   let n; // contains the PCM buffer for output file
