@@ -1,5 +1,7 @@
 #!/usr/bin/node
-console.log("WaveBin");
+console.log("[wtb] WaveToBin");
+const ffmpeg = require("./ffmpeg")
+(async function(){
 try {
   // Import library for handling wav files.
   const { WaveFile } = require("wavefile");
@@ -10,7 +12,12 @@ try {
   // Procure argyments
   const cf = require("./argp")(process.argv)
   // Read the file.
-  const fd = fs.readFileSync(cf.file);
+
+  const inputFilePath = cf.file
+  if(cf.useFFmpeg){
+      inputFilePath = ffmpeg(inputFilePath)
+  }
+  const fd = fs.readFileSync(inputFilePath);
   // Load input file into wf.
   wf.fromBuffer(fd);
   /*do important conversions
@@ -37,4 +44,4 @@ try {
   console.log("[wtb] an error occurred:");
   throw err
   process.exit(1);
-}
+}})()
