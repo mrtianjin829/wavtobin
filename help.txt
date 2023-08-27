@@ -1,0 +1,10 @@
+USAGE: (command) [OPTIONS] FILE
+Options:
+
+   -o / --output : Specify output file (default is out.bin)
+   -r / --sampleRate : Sample rate of output file (default is 32000)
+   --ffmpeg : Use ffmpeg to enable wavtobin to process other audio types
+
+Example:
+    (command) -r 32000 -o out.bin file.wav
+    (command) -r 48000 -o /home/myfile.bin --ffmpeg file.mp3

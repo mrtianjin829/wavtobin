@@ -1,6 +1,6 @@
 #!/usr/bin/node
 console.log("[wtb] WaveToBin");
-const ffmpeg = require("./ffmpeg")
+const ffmpeg = require("./ffmpeg");
 (async function(){
 try {
   // Import library for handling wav files.
@@ -12,10 +12,14 @@ try {
   // Procure argyments
   const cf = require("./argp")(process.argv)
   // Read the file.
-
-  const inputFilePath = cf.file
+  if(cf.help){
+     console.log(fs.readFileSync("help.txt").toString("utf8"))
+     return
+  }
+  let inputFilePath = cf.file
   if(cf.useFFmpeg){
-      inputFilePath = ffmpeg(inputFilePath)
+      console.log("[wtb] Waiting for FFmpeg")
+      inputFilePath = (await ffmpeg(inputFilePath)).path
   }
   const fd = fs.readFileSync(inputFilePath);
   // Load input file into wf.
