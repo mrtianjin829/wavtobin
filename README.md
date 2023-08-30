@@ -25,7 +25,7 @@ And you are all set.
 ### Synopsis:
 
 ```sh
-./index.js [-o OUTPUT] [-r SAMPLERATE] FILE.WAV
+./index.js [-o OUTPUT] [-r SAMPLERATE] [--ffmpeg] FILE
 ```
 
 Once you execute this command properly, the program will create the file `out.bin` and continue silently.
