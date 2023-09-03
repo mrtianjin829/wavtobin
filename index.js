@@ -41,6 +41,7 @@ try {
   } else {
     n = smp;
   }
+  smp = undefined;
   n = new Uint8Array(n);
   fs.writeFileSync(cf.output, Buffer.from(n)); // Write output.
 } catch (err) {
