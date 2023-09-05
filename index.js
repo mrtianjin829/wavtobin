@@ -32,12 +32,14 @@ try {
   if(wf.bitDepth !== "8") wf.toBitDepth("8");
   // Obtain "samples" from audio
   let smp = wf.getSamples();
-  let n; // contains the PCM buffer for output file
+  let n = []; // contains the PCM buffer for output file
   // properly interleave the channels
   if (wf.fmt.numChannels == 2) {
     let [a, b] = smp;
     // Use average to mix stereo channels.
-    n = a.map((v, i) => (v + b[i]) / 2);
+    for(let i = 0; i < smp.length; i++){
+	n.push((a[i]+b[i])/2);
+    };
   } else {
     n = smp;
   }
