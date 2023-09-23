@@ -14,8 +14,7 @@ Supported Platforms:
 
 - Node.js
 - NPM
-
-To install, you need to download a specific tag from the repository
+  In order to install, you need to download a specific tag from the repositoru
 
 After that, extract the downloaded zip/tar.gz file.
 Run `npm i` on the extracted folder
