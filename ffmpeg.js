@@ -13,14 +13,14 @@ function makeid(length) {
   }
   return result;
 }
-async function ffmpeg(input, args) {
+async function ffmpeg(input, args,stdout) {
   let ret = {
     path: "",
     exitcode: 0,
   };
   let path = pth.resolve(os.tmpdir(), makeid(16) + ".wav");
   let proc = cp.exec(`ffmpeg -y ${args[0]} -i "${input}" ${args[1]} ${ret.path}`);
-  proc.stdout.pipe(process.stdout);
+  proc.stderr.pipe(stdout);
   let get_code = () => new Promise((res) => proc.on("close", res));
   ret.exitcode = await get_code();
   ret.path = path;
