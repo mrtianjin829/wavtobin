@@ -4,7 +4,7 @@ function gen(args) {
      sampleRate: 32000,
      output: "out.bin",
      useFFmpeg: false,
-     ffmpegArg: ["",""]
+     ffmpegArg: ["",""],
      help: false
   };
   args.forEach((v,i)=>{
