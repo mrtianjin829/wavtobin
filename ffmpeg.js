@@ -19,7 +19,7 @@ async function ffmpeg(input, args) {
     exitcode: 0,
   };
   let path = pth.resolve(os.tmpdir(), makeid(16) + ".wav");
-  let proc = cp.exec(`ffmpeg ${args[0]} -i "${input}" ${args[1]} ${ret.path}`);
+  let proc = cp.exec(`ffmpeg -y ${args[0]} -i "${input}" ${args[1]} ${ret.path}`);
   proc.stdout.pipe(process.stdout);
   let get_code = () => new Promise((res) => proc.on("close", res));
   ret.exitcode = await get_code();
