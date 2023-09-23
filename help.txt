@@ -4,6 +4,9 @@ Options:
    -o / --output : Specify output file (default is out.bin)
    -r / --sampleRate : Sample rate of output file (default is 32000)
    --ffmpeg : Use ffmpeg to enable wavtobin to process other audio types
+   [experimental options]
+   -fi "ARGS" : Apply input arguments
+   -fo "ARGS" : Apply output arguments
 
 Example:
     (command) -r 32000 -o out.bin file.wav
