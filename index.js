@@ -55,39 +55,4 @@ const pth = require("path");
     throw err;
     process.exit(1);
   }
-  let inputFilePath = cf.file
-  if(cf.useFFmpeg){
-      console.log("[wtb] Waiting for FFmpeg")
-      inputFilePath = (await ffmpeg(inputFilePath)).path
-  }
-  const fd = fs.readFileSync(inputFilePath);
-  // Load input file into wf.
-  wf.fromBuffer(fd);
-  /*do important conversions
-   *this will convert the sample-type into PCM u8
-   *changes the sample rate to the desired rate otherwise 32 Khz (good for html5bytebeat)
-   * */
-  if(wf.fmt.sampleRate != cf.sampleRate) wf.toSampleRate(cf.sampleRate);
-  if(wf.bitDepth !== "8") wf.toBitDepth("8");
-  // Obtain "samples" from audio
-  let smp = wf.getSamples();
-  let n = []; // contains the PCM buffer for output file
-  // properly interleave the channels
-  if (wf.fmt.numChannels == 2) {
-    let [a, b] = smp;
-    // Use average to mix stereo channels.
-    for(let i = 0; i < smp.length; i++){
-	n.push((a[i]+b[i])/2);
-    };
-  } else {
-    n = smp;
-  }
-  smp = undefined;
-  n = new Uint8Array(n);
-  fs.writeFileSync(cf.output, Buffer.from(n)); // Write output.
-} catch (err) {
-  // Definitely helpful error handling.
-  console.log("[wtb] an error occurred:");
-  throw err
-  process.exit(1);
 })();
