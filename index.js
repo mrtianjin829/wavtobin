@@ -19,7 +19,7 @@ const ffmpeg = require("./ffmpeg");
     let inputFilePath = cf.file;
     if (cf.useFFmpeg) {
       console.log("[wtb] Waiting for FFmpeg");
-      inputFilePath = (await ffmpeg(inputFilePath,cf.ffmpegArg,process.stdout)).path;
+      inputFilePath = (await ffmpeg(inputFilePath,cf.ffmpegArg,process.stdout,cf)).path;
     }
     const fd = fs.readFileSync(inputFilePath);
     // Load input file into wf.
