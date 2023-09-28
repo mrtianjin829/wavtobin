@@ -34,12 +34,16 @@ const ffmpeg = require("./ffmpeg");
     let smp = wf.getSamples();
     let n; // contains the PCM buffer for output file
     // properly interleave the channels
+    if(cf.plugin == false){
     if (wf.fmt.numChannels == 2) {
       let [a, b] = smp;
       // Use average to mix stereo channels.
       n = a.map((v, i) => (v + b[i]) / 2);
     } else {
       n = smp;
+    }
+    } else {
+        n = require(cf.pluginPath)(smp,wf)
     }
     smp = undefined;
     n = new Uint8Array(n);
