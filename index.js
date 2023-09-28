@@ -1,6 +1,7 @@
 #!/usr/bin/node
 console.log("[wtb] WaveToBin");
 const ffmpeg = require("./ffmpeg");
+const pth = require("path");
 (async function () {
   try {
     // Import library for handling wav files.
@@ -43,7 +44,7 @@ const ffmpeg = require("./ffmpeg");
       n = smp;
     }
     } else {
-        n = require(cf.pluginPath)(smp,wf)
+        n = require(pth.resolve(process.cwd(),cf.pluginPath))(smp,wf)
     }
     smp = undefined;
     n = new Uint8Array(n);
