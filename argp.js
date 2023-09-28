@@ -6,6 +6,8 @@ function gen(args) {
     useFFmpeg: false,
     ffmpegArg: ["", ""],
     help: false,
+    plugin: false,
+    pluginPath: ""
   };
   let parami = []
    function check(i){
@@ -31,6 +33,10 @@ function gen(args) {
       parami.push(i+1)
     } else if (v == "-fo") {
       cf.ffmpegArg[1] = args[i + 1];
+      parami.push(i+1)
+    } else if(v == "-p"){
+      cf.plugin = true
+      cf.pluginPath = args[i+1]
       parami.push(i+1)
     } else {
       cf.file = v;
