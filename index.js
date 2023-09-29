@@ -14,7 +14,7 @@ const pth = require("path");
     const cf = require("./argp")(process.argv);
     // Read the file.
     if (cf.help) {
-      console.log(fs.readFileSync("help.txt").toString("utf8"));
+      console.log(fs.readFileSync(pth.resolve(__dirname,"help.txt")).toString("utf8"));
       return;
     }
     let inputFilePath = cf.file;
