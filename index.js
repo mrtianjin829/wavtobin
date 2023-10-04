@@ -1,6 +1,7 @@
 #!/usr/bin/node
 console.log("[wtb] WaveToBin");
 const ffmpeg = require("./ffmpeg");
+const pth = require("path");
 (async function () {
   try {
     // Import library for handling wav files.
@@ -13,13 +14,13 @@ const ffmpeg = require("./ffmpeg");
     const cf = require("./argp")(process.argv);
     // Read the file.
     if (cf.help) {
-      console.log(fs.readFileSync("help.txt").toString("utf8"));
+      console.log(fs.readFileSync(pth.resolve(__dirname,"help.txt")).toString("utf8"));
       return;
     }
     let inputFilePath = cf.file;
     if (cf.useFFmpeg) {
       console.log("[wtb] Waiting for FFmpeg");
-      inputFilePath = (await ffmpeg(inputFilePath,cf.ffmpegArg,process.stdout)).path;
+      inputFilePath = (await ffmpeg(inputFilePath,cf.ffmpegArg,process.stdout,cf)).path;
     }
     const fd = fs.readFileSync(inputFilePath);
     // Load input file into wf.
@@ -34,12 +35,16 @@ const ffmpeg = require("./ffmpeg");
     let smp = wf.getSamples();
     let n; // contains the PCM buffer for output file
     // properly interleave the channels
+    if(cf.plugin == false){
     if (wf.fmt.numChannels == 2) {
       let [a, b] = smp;
       // Use average to mix stereo channels.
       n = a.map((v, i) => (v + b[i]) / 2);
     } else {
       n = smp;
+    }
+    } else {
+        n = require(pth.resolve(process.cwd(),cf.pluginPath))(smp,wf)
     }
     smp = undefined;
     n = new Uint8Array(n);

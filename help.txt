@@ -7,6 +7,7 @@ Options:
    [experimental options]
    -fi "ARGS" : Apply input arguments
    -fo "ARGS" : Apply output arguments
+   -p "path/to/plugin.js" Plugin (e.g. custom mixer)
 
 Example:
     (command) -r 32000 -o out.bin file.wav
