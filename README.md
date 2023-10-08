@@ -26,7 +26,6 @@ And you are all set.
 ### Synopsis:
 
 ```sh
-<<<<<<< HEAD
 ./index.js [-o OUTPUT] [-r SAMPLERATE] [--ffmpeg] [-fi ARGS] [-fo ARGS] FILE
 ```
 
