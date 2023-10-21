@@ -4,6 +4,9 @@ const ffmpeg = require("./ffmpeg");
 const pth = require("path");
 (async function () {
   try {
+    if(process.argv.length <= 2){
+       return console.log("No argument given. Try -h")
+    }
     // Import library for handling wav files.
     const { WaveFile } = require("wavefile");
     // Load filesystem API
