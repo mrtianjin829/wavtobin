@@ -21,6 +21,10 @@ const pth = require("path");
       return;
     }
     let inputFilePath = cf.file;
+    if(!(cf.useFFmpeg && inputFilePath.endsWith(".wav"))){
+        console.log("[wtb] Warning: --ffmpeg isn't implicitly specified")
+        cf.useFFmpeg = true
+    }
     if (cf.useFFmpeg) {
       console.log("[wtb] Waiting for FFmpeg");
       inputFilePath = (await ffmpeg(inputFilePath,cf.ffmpegArg,process.stdout,cf)).path;
