@@ -14,7 +14,6 @@ function makeid(length) {
   return result;
 }
 async function ffmpeg(input, args,stdout,pargs) {
-  console.log(arguments[1])
   let ret = {
     path: "",
     exitcode: 0,
