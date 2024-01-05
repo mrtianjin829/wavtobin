@@ -7,7 +7,8 @@ function gen(args) {
     ffmpegArg: ["", ""],
     help: false,
     plugin: false,
-    pluginPath: ""
+    pluginPath: "",
+    verbose: false
   };
   let parami = []
    function check(i){
@@ -38,7 +39,10 @@ function gen(args) {
       cf.plugin = true
       cf.pluginPath = args[i+1]
       parami.push(i+1)
-    } else {
+    } else if(v == "-v"){
+        cf.verbose = true;
+    }
+    else {
       cf.file = v;
     }
   });
