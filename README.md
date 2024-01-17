@@ -2,6 +2,11 @@
 
 A simple cli tool made in Node.js for creating 32Khz u8 (unsigned 8-bit) mono dumps.
 
+## Credits
+- [**wavtobin**](https://github.com/rochars/wavefile)
+- Node.js
+
+
 ## Install
 
 Supported Platforms:
