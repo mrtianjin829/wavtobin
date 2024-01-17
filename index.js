@@ -15,8 +15,14 @@ const pth = require("path");
     const wf = new WaveFile();
     // Procure argyments
     const cf = require("./argp")(process.argv);
+
+    function vprint(...data){
+        if(cf.verbose)
+            console.log(...data)
+    }
     // Read the file.
     if (cf.help) {
+        vprint("[wtb] Reading file...")
       console.log(fs.readFileSync(pth.resolve(__dirname,"help.txt")).toString("utf8"));
       return;
     }
@@ -26,9 +32,10 @@ const pth = require("path");
         cf.useFFmpeg = true
     }
     if (cf.useFFmpeg) {
-      console.log("[wtb] Waiting for FFmpeg");
+      vprint("[wtb] Waiting for FFmpeg");
       inputFilePath = (await ffmpeg(inputFilePath,cf.ffmpegArg,process.stdout,cf)).path;
     }
+    vprint(cf.useFFmpeg?"[wtb] Reading file converted by ffmpeg":"[wtb] Reading file")
     const fd = fs.readFileSync(inputFilePath);
     // Load input file into wf.
     wf.fromBuffer(fd);
@@ -44,6 +51,7 @@ const pth = require("path");
     // properly interleave the channels
     if(cf.plugin == false){
     if (wf.fmt.numChannels == 2) {
+      vprint("[wtb] Using average based stereo mixer")
       let [a, b] = smp;
       // Use average to mix stereo channels.
       n = a.map((v, i) => (v + b[i]) / 2);
@@ -51,10 +59,12 @@ const pth = require("path");
       n = smp;
     }
     } else {
+        vprint("[wtb] Using plugin")
         n = require(pth.resolve(process.cwd(),cf.pluginPath))(smp,wf)
     }
     smp = undefined;
     n = new Uint8Array(n);
+    vprint("[wtb] Writing file")
     fs.writeFileSync(cf.output, Buffer.from(n)); // Write output.
   } catch (err) {
     // Definitely helpful error handling.
