@@ -31,7 +31,7 @@ And you are all set.
 ### Synopsis:
 
 ```sh
-./index.js [-o OUTPUT] [-r SAMPLERATE] [--ffmpeg] [-fi ARGS] [-fo ARGS] FILE
+./index.js [-h] [-o OUTPUT] [-r SAMPLERATE] [--ffmpeg] [-fi ARGS] [-fo ARGS] FILE
 ```
 
 Once you execute this command properly, the program will create the file `out.bin` and continue silently.
