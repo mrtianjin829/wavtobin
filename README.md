@@ -12,7 +12,7 @@ Supported Platforms:
 
 ### Required programs:
 
-- Node.js
+- Node.js (>= 16.x)
 - NPM
 
 To install, you need to download a specific tag from the repository
